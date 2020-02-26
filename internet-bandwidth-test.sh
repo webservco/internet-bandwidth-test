@@ -45,5 +45,3 @@ LOG_TIME=$(date '+%Y-%m-%dT%H:%M:%S') # log time format
 
 #  Write result in log file
 echo "$LOG_TIME,$RESULT_PING,$RESULT_DOWNLOAD,$RESULT_UPLOAD,$RESULT_SHARE" >> $LOG_FILE
-
-return 0
