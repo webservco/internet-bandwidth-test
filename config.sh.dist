@@ -1,0 +1,4 @@
+#!/bin/bash
+LOG_PATH='' # with trailing slash
+LOG_NAME=''
+SERVER_ID=''
