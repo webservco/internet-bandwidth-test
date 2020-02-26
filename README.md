@@ -8,6 +8,8 @@ Test internet bandwidth using speedtest-cli and write the results in a CSV file.
 
 
 ```sh
+# create and edit the configuration file
+cp config.sh.dist config.sh && vim config.sh
 # make executable
 chmod +x internet-bandwidth-test.sh
 # run manually
@@ -28,7 +30,3 @@ chmod +x internet-bandwidth-test.sh
 https://askubuntu.com/a/597937
 
 ---
-
-## TODO
-
-* check if `speedtest-cli` exists;
