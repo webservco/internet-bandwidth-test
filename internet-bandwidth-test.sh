@@ -3,7 +3,7 @@
 # webservco/internet-bandwidth-test
 # Test internet bandwidth using speedtest-cli and write the results in a CSV file.
 
-P_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/" # program path
+p_path="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )/" # program path
 
 # Check external command
 command -v speedtest-cli >/dev/null 2>&1 || {
@@ -12,40 +12,34 @@ command -v speedtest-cli >/dev/null 2>&1 || {
 }
 
 # Check if configuration file is present
-if [ ! -f "${P_PATH}config.sh" ]; then
+if [ ! -f "${p_path}config.sh" ]; then
     echo "Configuration file is missing"
     return 1
 fi
 
-. "${P_PATH}config.sh" # load custom configuration
+. "${p_path}config.sh" # load custom configuration
 
-LOG_DATE=$(date '+%Y-%m-%d') # log file date format
-LOG_FILE="${LOG_PATH}${LOG_NAME}-$LOG_DATE.csv" # log file name
+log_date=$(date '+%Y-%m-%d') # log file date format
+log_file="${log_path}${log_name}-$log_date.csv" # log file name
 
-mkdir -p $(dirname $LOG_FILE) # create log dir if not exists
+mkdir -p $(dirname $log_file) # create log dir if not exists
 
-# Default data
 
-RESULT_PING=0
-RESULT_DOWNLOAD=0
-RESULT_UPLOAD=0
-RESULT_SHARE=''
-
-SPEED_TEST_RES=$(speedtest-cli --simple --share --server $SERVER_ID 2>/dev/null) # perform speedtest action
+result=$(speedtest-cli --simple --share --server $server_id 2>/dev/null) # perform speedtest action
 
 # Parse result
 
-RESULT_PING=$(echo $SPEED_TEST_RES | awk '{print $2}')
-RESULT_DOWNLOAD=$(echo $SPEED_TEST_RES | awk '{print $5}')
-RESULT_UPLOAD=$(echo $SPEED_TEST_RES | awk '{print $8}')
-RESULT_SHARE=$(echo $SPEED_TEST_RES | awk '{print $12}')
+r_ping=$(echo $result | awk '{print $2}')
+r_download=$(echo $result | awk '{print $5}')
+r_upload=$(echo $result | awk '{print $8}')
+r_share=$(echo $result | awk '{print $12}')
 
 # If log file doesn't exist yet, write the header line
-if [ ! -f $LOG_FILE ]; then
-    echo "Date,Ping,Download,Upload,Result" >> $LOG_FILE
+if [ ! -f $log_file ]; then
+    echo "Date,Ping,Download,Upload,Result" >> $log_file
 fi
 
-LOG_TIME=$(date '+%Y-%m-%dT%H:%M:%S') # log time format
+log_time=$(date '+%Y-%m-%dT%H:%M:%S') # log time format
 
 #  Write result in log file
-echo "$LOG_TIME,$RESULT_PING,$RESULT_DOWNLOAD,$RESULT_UPLOAD,$RESULT_SHARE" >> $LOG_FILE
+echo "$log_time,$r_ping,$r_download,$r_upload,$r_share" >> $log_file
