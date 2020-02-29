@@ -24,22 +24,25 @@ log_file="${log_path}${log_name}-$log_date.csv" # log file name
 
 mkdir -p $(dirname $log_file) # create log dir if not exists
 
-
-result=$(speedtest-cli --simple --share --server $server_id 2>/dev/null) # perform speedtest action
+result=$(speedtest-cli --simple --share --server $server_id 2>&1) # perform speedtest action
 
 # Parse result
+r_ping=$(echo "$result" | grep 'Ping' | awk '{print $2}')
+r_download=$(echo "$result" | grep 'Download' | awk '{print $2}')
+r_upload=$(echo "$result" | grep 'Upload' | awk '{print $2}')
+r_share=$(echo "$result" | grep 'Share' | awk '{print $3}')
 
-r_ping=$(echo $result | awk '{print $2}')
-r_download=$(echo $result | awk '{print $5}')
-r_upload=$(echo $result | awk '{print $8}')
-r_share=$(echo $result | awk '{print $12}')
+r_message=''
+if [ "$debug" = 1 ]; then
+    r_message=$(echo "$result")
+fi
 
 # If log file doesn't exist yet, write the header line
 if [ ! -f $log_file ]; then
-    echo "Date,Ping,Download,Upload,Result" >> $log_file
+    echo "Date,Ping,Download,Upload,Message" >> $log_file
 fi
 
 log_time=$(date '+%Y-%m-%dT%H:%M:%S') # log time format
 
 #  Write result in log file
-echo "$log_time,$r_ping,$r_download,$r_upload,$r_share" >> $log_file
+echo "$log_time,$r_ping,$r_download,$r_upload,$r_share,\"$r_message\"" >> $log_file

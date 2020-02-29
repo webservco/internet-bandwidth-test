@@ -2,3 +2,4 @@
 log_path='' # with trailing slash
 log_name=''
 server_id=''
+debug=1
