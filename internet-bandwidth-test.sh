@@ -37,6 +37,11 @@ if [ "$debug" = 1 ]; then
     r_message=$(echo "$result")
 fi
 
+# log full result on error, even if debug disabled
+if [[ ( -z "$r_ping" ) || ( "$r_download" = "0" ) ]]; then
+    r_message=$(echo "$result")
+fi
+
 # If log file doesn't exist yet, write the header line
 if [ ! -f $log_file ]; then
     echo "Date,Ping,Download,Upload,Message" >> $log_file
