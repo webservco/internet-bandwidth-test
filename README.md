@@ -6,6 +6,7 @@ Test internet bandwidth using speedtest-cli and write the results in a CSV file.
 
 ## Usage
 
+Make sure to install `speedtest-cli`.
 
 ```sh
 # create and edit the configuration file
