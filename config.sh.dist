@@ -1,5 +1,5 @@
 #!/bin/bash
-log_path='' # with trailing slash
-log_name=''
+log_path='/full/path/' # with trailing slash
+log_name='internet-bandwidth-test'
 server_id=''
 debug=1
