@@ -20,7 +20,8 @@ fi
 . "${p_path}config.sh" # load custom configuration
 
 log_date=$(date '+%Y-%m-%d') # log file date format
-log_file="${log_path}${log_name}-$log_date.csv" # log file name
+log_dir=$(date '+%Y-%m')
+log_file="${log_path}${log_dir}/${log_name}-$log_date.csv" # log file name
 
 mkdir -p $(dirname $log_file) # create log dir if not exists
 
