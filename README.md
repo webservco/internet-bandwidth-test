@@ -8,8 +8,6 @@ Test internet bandwidth using speedtest-cli and write the results in a CSV file.
 
 Make sure to install `speedtest-cli`.
 
-Get list of servers, need id in config file: `speedtest-cli --list | grep -i {Country}`
-
 ```sh
 # create and edit the configuration file
 cp config.sh.dist config.sh && vim config.sh

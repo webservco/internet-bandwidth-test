@@ -25,7 +25,12 @@ log_file="${log_path}${log_dir}/${log_name}-$log_date.csv" # log file name
 
 mkdir -p $(dirname $log_file) # create log dir if not exists
 
-result=$(speedtest-cli --simple --share --server $server_id 2>&1) # perform speedtest action
+if [ -n "$server_id" ]
+then
+    result=$(speedtest-cli --simple --share --server $server_id 2>&1) # perform speedtest action
+else
+    result=$(speedtest-cli --simple --share 2>&1) # perform speedtest action
+fi
 
 # Parse result
 r_ping=$(echo "$result" | grep 'Ping' | awk '{print $2}')
