@@ -1,9 +1,10 @@
 #!/bin/bash
-# Full path to log directory, with trailing slash
+# Full path to log directory, with trailing slash.
 log_path='/full/path/'
-# Name of log file to generate
+# Name of log file to generate.
 log_name='internet-bandwidth-test'
-# Server id to use. Leave blank in order to use a random server
+# Server id to use. Leave blank in order to use a random server.
+# In order to obtain the server_id, one could run the command `speedtest-cli --list`.
 server_id=''
-# Write also detailed result output to log
+# Write also detailed result output to log.
 debug=1
