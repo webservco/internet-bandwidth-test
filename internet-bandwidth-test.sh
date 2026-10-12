@@ -50,7 +50,7 @@ fi
 
 # If log file doesn't exist yet, write the header line
 if [ ! -f $log_file ]; then
-    echo "Date,Ping,Download,Upload,Message" >> $log_file
+    echo "Date,Ping,Download,Upload,Share,Message" >> $log_file
 fi
 
 log_time=$(date '+%Y-%m-%dT%H:%M:%S') # log time format

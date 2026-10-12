@@ -29,11 +29,11 @@ cp config.sh.dist config.sh
 Each run appends one line to `{log_path}{YYYY-MM}/{log_name}-{YYYY-MM-DD}.csv`, creating the directory and the file if needed.
 
 ```text
-Date,Ping,Download,Upload,Message
+Date,Ping,Download,Upload,Share,Message
 2023-05-30T10:00:01,18.4,93.12,38.71,http://www.speedtest.net/result/0000000000.png,""
 ```
 
-Ping is in ms, download and upload in Mbit/s.
+Ping is in ms, download and upload in Mbit/s. Share is the URL of the result image.
 
 ### Cron
 
@@ -61,8 +61,6 @@ debug=1
 ---
 
 ## Notes
-
-Each line has six values, but the header only lists five. The extra one is the share image URL, just before the message.
 
 The full output is always written when the test fails (no ping, or a download speed of 0), even with `debug=0`.
 
